@@ -17,7 +17,7 @@ app.use(handlebars({
 }));
 
 router.get('/', async function(ctx, next) {
-    const context = { version: process.version, time: new Date(), network: JSON.stringify(require('os').networkInterfaces())};
+    const context = { version: process.version, time: new Date(), network: JSON.stringify(os.networkInterfaces())};
     console.log('router.get /', context);
     await ctx.render('hello-world', context);
 });
