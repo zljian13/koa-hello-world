@@ -5,6 +5,7 @@
 import Koa        from 'koa';            // koa framework
 import Router     from 'koa-router';     // router middleware for koa
 import handlebars from 'koa-handlebars'; // handlebars templating
+import os from 'os';
 
 const app = new Koa();
 
@@ -16,7 +17,7 @@ app.use(handlebars({
 }));
 
 router.get('/', async function(ctx, next) {
-    const context = { version: process.version, time: new Date() };
+    const context = { version: process.version, time: new Date(), network: JSON.stringify(require('os').networkInterfaces())};
     console.log('router.get /', context);
     await ctx.render('hello-world', context);
 });
